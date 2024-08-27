@@ -16,7 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${GeistSans.variable}`}>
       <body>
-        <header className="bg-zinc-600 p-6 text-white">
+        <header className="flex justify-between bg-zinc-600 p-6 text-white">
           <nav>
             <ul className="flex gap-4">
               <li>
