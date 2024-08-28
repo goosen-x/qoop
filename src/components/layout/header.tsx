@@ -13,10 +13,7 @@ export const Header = ({ className, ...rest }: Props) => {
 
   return (
     <header
-      className={cn(
-        "flex justify-between bg-zinc-600 p-6 text-white",
-        className,
-      )}
+      className={cn("flex justify-between bg-lime-300 p-6", className)}
       {...rest}
     >
       <nav>

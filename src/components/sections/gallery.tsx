@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { getMyImages } from "~/server/queries";
 
 export const SectionGallery = async () => {
@@ -6,16 +7,19 @@ export const SectionGallery = async () => {
 
   return (
     <div className="flex flex-wrap gap-4">
-      {images.map((image, idx) => (
-        <Image
-          className="object-cover"
-          // objectFit="fill"
-          src={image.url}
-          alt="random"
-          width={200}
-          height={200}
-          key={`${image.id} + ${idx}`}
-        />
+      {images.map((image) => (
+        <div key={image.id}>
+          <Link href={`/img/${image.id}`}>
+            <Image
+              className="h-40 w-40 object-cover"
+              src={image.url}
+              alt="random"
+              width={200}
+              height={200}
+            />
+          </Link>
+          <div>{image.name}</div>
+        </div>
       ))}
     </div>
   );
