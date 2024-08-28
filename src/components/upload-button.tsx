@@ -3,6 +3,8 @@
 import { useRouter } from "next/navigation";
 import { useUploadThing } from "~/utils/uploadthing";
 import { UploadSVG } from "./icons/upload";
+import { toast } from "sonner";
+import { Spinner } from "./icons/spinner";
 
 // inferred input off useUploadThing
 type Input = Parameters<typeof useUploadThing>;
@@ -35,7 +37,20 @@ export const SimpleUploadButton = () => {
   const { inputProps, isUploading } = useUploadThingInputProps(
     "imageUploader",
     {
+      onUploadBegin() {
+        toast(
+          <div className="flex gap-4">
+            <Spinner /> Uploading...
+          </div>,
+          {
+            duration: 5000,
+            id: "upload-begin",
+          },
+        );
+      },
       onClinetUploadComplete() {
+        toast.dismiss("upload-begin");
+        toast("Upload complete!");
         router.refresh();
       },
     },

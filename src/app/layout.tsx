@@ -9,6 +9,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { Header } from "~/components/layout/header";
 import { extractRouterConfig } from "uploadthing/server";
 import { ourFileRouter } from "./api/uploadthing/core";
+import { Toaster } from "sonner";
 
 export const metadata: Metadata = {
   title: "qooooop",
@@ -28,9 +29,10 @@ export default function RootLayout({
           <div className="grid h-screen grid-rows-[auto,1fr]">
             <Header />
             <main className="overflow-y-scroll">{children}</main>
+            {modal}
           </div>
-          {modal}
           <div id="modal-root" />
+          <Toaster />
         </body>
       </html>
     </ClerkProvider>
