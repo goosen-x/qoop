@@ -1,16 +1,11 @@
-"use client";
-
 import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
-import { useRouter } from "next/navigation";
 import type { ComponentPropsWithoutRef } from "react";
-import { UploadButton } from "~/lib/uploadthings";
 import { cn } from "~/lib/utils";
+import { SimpleUploadButton } from "../upload-button";
 
 type Props = ComponentPropsWithoutRef<"div">;
 
 export const Header = ({ className, ...rest }: Props) => {
-  const router = useRouter();
-
   return (
     <header
       className={cn("flex justify-between bg-lime-300 p-6", className)}
@@ -31,12 +26,7 @@ export const Header = ({ className, ...rest }: Props) => {
           <SignInButton />
         </SignedOut>
         <SignedIn>
-          <UploadButton
-            endpoint="imageUploader"
-            onClientUploadComplete={() => {
-              router.refresh();
-            }}
-          />
+          <SimpleUploadButton />
           <UserButton />
         </SignedIn>
       </div>
